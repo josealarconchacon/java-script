@@ -144,6 +144,26 @@ class LinkedList {
     this.length++;
     return true;
   }
+
+  // remove()
+  remove(index) {
+    // If the index is out of bounds (negative or greater than/equal to the length), return false
+    if (index < 0 || index >= this.length) {
+      return false; // Index is out of bounds
+    }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+    const previous = this.get(index - 1);
+    const temporary = previous.next;
+    previous.next = temporary.next;
+    temporary.next = null;
+    this.length--;
+    return temporary;
+  }
 }
 
 // create a new LinkedList
@@ -167,6 +187,7 @@ list.push(3);
 
 // list.set(1, 4);
 
-list.insert(1, 6);
+// list.insert(1, 6);
+list.remove(1);
 
 console.log("After update:", JSON.stringify(list, null, 2));
